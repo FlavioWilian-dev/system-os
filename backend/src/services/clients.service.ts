@@ -2,11 +2,15 @@ import pool from "../config/database";
 import { CriarCliente } from "../types/clients.typs";
 
 export const criarCliente = async (dados: CriarCliente) => {
+  console.log('DADOS RECEBIDOS:', dados);
+  console.log('CPF:', dados.cpfCnpj);
+  console.log('TIPO DO CPF:', typeof dados.cpfCnpj);
+
   const clienteExistente = await pool.query(
     `
-      SELECT CODIGOCLIENTE
-      FROM CADCLIENTE
-      WHERE CPFCNPJ = ?
+    SELECT CODIGOCLIENTE
+    FROM CADCLIENTE
+    WHERE CPFCNPJ = $1::varchar
     `,
     [dados.cpfCnpj]
   );
@@ -18,7 +22,7 @@ export const criarCliente = async (dados: CriarCliente) => {
   const resultado = await pool.query(
     `
       INSERT INTO CADCLIENTE ( NOMECLIENTE, CPFCNPJ, FONE, EMAIL, ENDERECO, BAIRRO, NUMERO, CEP, CIDADE, ESTADO )
-      VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+      VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10 )
     `,
     [ dados.nomeCliente, dados.cpfCnpj, dados.fone ?? null, dados.email ?? null, dados.endereco ?? null, dados.bairro ?? null, dados.numero ?? null, dados.cep ?? null, dados.cidade ?? null, dados.estado ?? null,
     ]
