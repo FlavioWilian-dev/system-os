@@ -21,7 +21,5 @@ export const autenticar = ( req: Request, res: Response, next: NextFunction ): v
     return;
   }
 
-  // A validação do JWT será implementada aqui.
-
   next();
 };
