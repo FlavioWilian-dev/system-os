@@ -1,10 +1,7 @@
 import pool from "../config/database";
-import { CriarCliente } from "../types/clients.typs";
+import { Cliente } from "../types/clients.typs";
 
-export const criarCliente = async (dados: CriarCliente) => {
-  console.log('DADOS RECEBIDOS:', dados);
-  console.log('CPF:', dados.cpfCnpj);
-  console.log('TIPO DO CPF:', typeof dados.cpfCnpj);
+export const criarCliente = async (dados: Cliente) => {
 
   const clienteExistente = await pool.query(
     `
@@ -29,4 +26,18 @@ export const criarCliente = async (dados: CriarCliente) => {
   );
 
   return resultado.rows[0];
+};
+
+export const obterClientes = async (dados: Cliente) => {
+  const resultado = await pool.query(
+    `
+      SELECT * FROM CADCLIENTE
+      WHERE nomeCliente ILIKE $1
+    `, [
+      `%${dados.nomeCliente}%`  
+    ]
+  );
+  console.log('nomeCliente', dados.nomeCliente);
+
+  return resultado.rows;
 };

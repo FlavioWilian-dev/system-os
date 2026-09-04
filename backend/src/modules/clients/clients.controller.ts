@@ -11,3 +11,14 @@ export const criarCliente = async ( req: Request, res: Response, next: NextFunct
     next(error);
   }
 };
+
+export const obterClientes = async ( req: Request, res: Response, next: NextFunction ): Promise<void> => {
+  try {
+    const clientes = await clientesService.obterClientes(req.body);  
+    console.log('Clientes encontrados:', clientes);
+
+    res.status(200).json(clientes);
+  } catch (error) {
+    next(error);
+  }
+};

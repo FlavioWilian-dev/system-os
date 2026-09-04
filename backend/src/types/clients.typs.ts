@@ -1,5 +1,5 @@
 
-export interface CriarCliente {
+export interface Cliente {
   nomeCliente: string;
   cpfCnpj: string;
   fone?: string;
