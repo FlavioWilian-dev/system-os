@@ -4,9 +4,9 @@ import * as produtosService from '../../services/products.service';
 
 export const criarProduto = async ( req: Request, res: Response, next: NextFunction ): Promise<void> => {
   try {
-    const produto = await produtosService.criarProduto(req.body);
+    const postProduto = await produtosService.criarProduto(req.body);
 
-    res.status(201).json({ message: 'Produto criado com sucesso' });
+    res.status(201).json({ message: 'Produto criado com sucesso', data: postProduto });
   } catch (error) {
     res.status(500).json({ message: 'Erro ao criar produto' });
     next(error);
@@ -15,9 +15,9 @@ export const criarProduto = async ( req: Request, res: Response, next: NextFunct
 
 export const obterProdutos = async ( req: Request, res: Response, next: NextFunction ): Promise<void> => {
   try {
-    const produtos = await produtosService.obterProdutos(req.body);     
+    const getProdutos = await produtosService.obterProdutos(req.body);     
 
-    res.status(200).json({ message: 'Produtos obtidos com sucesso', data: produtos });
+    res.status(200).json({ message: 'Produtos obtidos com sucesso', data: getProdutos });
     } catch (error) {
     res.status(500).json({ message: 'Erro ao obter produtos' });
     next(error);
