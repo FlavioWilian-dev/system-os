@@ -15,3 +15,5 @@ router.get(
     '/',
     obterProdutos
 )
+
+export default router;
