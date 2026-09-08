@@ -1,5 +1,5 @@
 import pool from "../config/database";
-import { Cliente } from "../types/clients.typs";
+import { Cliente } from "../types/clients.types";
 
 export const criarCliente = async (dados: Cliente) => {
 
