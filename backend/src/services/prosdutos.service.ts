@@ -27,3 +27,17 @@ export const criarProduto = async (dados: Produto) => {
 
   return resultado.rows[0];
 };
+
+export const obterProdutos = async (dados: Produto) => {
+  const resultado = await pool.query(
+    `
+      SELECT * FROM CADPRODUTO
+      WHERE nomeProduto ILIKE $1
+    `, [
+      `%${dados.nomeProduto}%`  
+    ]
+  );
+  console.log('nomeProduto', dados.nomeProduto);
+
+  return resultado.rows;
+};
