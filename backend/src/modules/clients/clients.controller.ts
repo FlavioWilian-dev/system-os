@@ -17,8 +17,9 @@ export const obterClientes = async ( req: Request, res: Response, next: NextFunc
   try {
     const clientes = await clientesService.obterClientes(req.body);  
 
-    res.status(200).json(clientes);
+    res.status(200).json({ message: 'Clientes obtidos com sucesso', data: clientes });
   } catch (error) {
+    res.status(500).json({ message: 'Erro ao obter clientes' });
     next(error);
   }
 };
