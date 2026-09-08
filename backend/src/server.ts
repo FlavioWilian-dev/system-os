@@ -3,7 +3,7 @@ import { testarConexao } from './config/database';
 import app from './app';
 
 
-const PORT = Number(process.env.PORT) || 3001;
+const PORT = Number(process.env.PORT);
 
 const iniciarServidor = async (): Promise<void> => {
   try {
