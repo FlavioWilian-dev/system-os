@@ -19,10 +19,10 @@ export const criarProduto = async (dados: Produto) => {
 
   const resultado = await pool.query(
     `
-      INSERT INTO CADPRODUTO ( CODIGOPRODUTO, NOMEPRODUTO, DESCRICAO, PRECO, ESTOQUE )
+      INSERT INTO CADPRODUTO ( CODIGOPRODUTO, NOMEPRODUTO, PRECO, ESTOQUE, UNIDADE )
       VALUES ( $1, $2, $3, $4, $5 )
     `,
-    [ dados.codigoProduto, dados.nomeProduto, dados.descricao ?? null, dados.preco ?? null, dados.estoque ]
+    [ dados.codigoProduto, dados.nomeProduto,  dados.preco ?? null, dados.estoque, dados.unidade ]
   );
 
   return resultado.rows[0];
