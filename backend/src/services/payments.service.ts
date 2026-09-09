@@ -28,3 +28,14 @@ export const criarPagamento = async (dados: Pagamento): Promise<Pagamento> => {
     return resultado.rows[0];
 
 };
+
+export const obterPagamentos = async (dados: { status: string; descricao: string }): Promise<Pagamento[]> => {
+    const resultado = await pool.query(
+        `
+        SELECT * FROM CADFORMAPAGAMENTO
+        WHERE STATUS = $1 AND DESCRICAO ILIKE $2
+        `,
+        [dados.status, `%${dados.descricao}%`]
+    );
+    return resultado.rows;
+};
