@@ -15,11 +15,10 @@ export const criarPagamento = async (dados: Pagamento): Promise<Pagamento> => {
     if (pagamentoExistente.rows.length > 0) {
         throw new Error('Forma de pagamento já cadastrada');
     }
-
-    
+   
     const resultado = await pool.query(
         `
-        INSERT INTO CADFORMAPAGAMENTO (  DESCRICAO, STATUS )
+        INSERT INTO CADFORMAPAGAMENTO ( DESCRICAO, STATUS )
         VALUES ( $1, $2 )
         `,
         [ dados.descricao, dados.status]
