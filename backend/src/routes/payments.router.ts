@@ -9,7 +9,7 @@ router.post(
     '/', 
     validar(criarPagamentoSchema), criarPagamento);
 
-    router.get(
+router.get(
     '/', 
     obterPagamentos);
 
