@@ -5,12 +5,7 @@ import { criarPagamento, obterPagamentos } from '../modules/payments/payments.co
 
 const router = Router();
 
-router.post(
-    '/', 
-    validar(criarPagamentoSchema), criarPagamento);
-
-router.get(
-    '/', 
-    obterPagamentos);
+router.post('/', validar(criarPagamentoSchema), criarPagamento);
+router.get('/', obterPagamentos);
 
 export default router;
