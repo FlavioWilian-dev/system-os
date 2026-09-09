@@ -8,10 +8,10 @@ export const criarProdutoSchema = z.object({
     .string()
     .min(3, 'O nome do produto deve ter pelo menos 3 caracteres'),
     preco: z
-    .number()
-    .optional(),
+    .string()
+    .min(0, 'O preço do produto deve ser um número válido'),
   estoque: z
-    .number()
+    .string()
     .min(0, 'O estoque não pode ser negativo'),
   unidade: z
     .string()

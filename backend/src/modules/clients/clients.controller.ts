@@ -6,7 +6,6 @@ export const criarCliente = async ( req: Request, res: Response, next: NextFunct
   try {
     const postCliente = await clientesService.criarCliente(req.body);
 
-    
     res.status(201).json({ message: 'Cliente criado com sucesso', data: postCliente });
   } catch (error) {
     next(error);
