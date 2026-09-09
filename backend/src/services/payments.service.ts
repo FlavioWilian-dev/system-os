@@ -7,7 +7,7 @@ export const criarPagamento = async (dados: Pagamento): Promise<Pagamento> => {
         `
         SELECT CODIGOFORMAPAGAMENTO
         FROM CADFORMAPAGAMENTO
-        WHERE DESCRIAO = $1::varchar
+        WHERE DESCRICAO = $1::varchar
         `,
         [dados.descricao]
     );
@@ -19,10 +19,10 @@ export const criarPagamento = async (dados: Pagamento): Promise<Pagamento> => {
     
     const resultado = await pool.query(
         `
-        INSERT INTO CADFORMAPAGAMENTO ( CODIGOFORMAPAGAMENTO, DESCRICAO, STATUS )
-        VALUES ( $1, $2, $3 )
+        INSERT INTO CADFORMAPAGAMENTO (  DESCRICAO, STATUS )
+        VALUES ( $1, $2 )
         `,
-        [dados.codigoFormaPagamento, dados.descricao, dados.status]
+        [ dados.descricao, dados.status]
     );
 
     return resultado.rows[0];

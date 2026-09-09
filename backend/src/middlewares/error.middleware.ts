@@ -10,6 +10,18 @@ export const errorMiddleware = ( error: Error, req: Request, res: Response, next
 
     return;
   }
+  if (error.message === 'Forma de pagamento já cadastrada') {
+    res.status(409).json({
+      erro: error.message,
+    }); 
+    return
+  }
+  if (error.message === 'Código do produto já cadastrado') {
+    res.status(409).json({
+      erro: error.message,
+    }); 
+    return
+  }
 
   res.status(500).json({
     erro: 'Erro interno do servidor',

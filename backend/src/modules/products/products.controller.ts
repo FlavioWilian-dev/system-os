@@ -8,7 +8,6 @@ export const criarProduto = async ( req: Request, res: Response, next: NextFunct
 
     res.status(201).json({ message: 'Produto criado com sucesso', data: postProduto });
   } catch (error) {
-    res.status(500).json({ message: 'Erro ao criar produto', data: error });
     next(error);
   }
 };

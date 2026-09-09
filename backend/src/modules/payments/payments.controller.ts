@@ -8,7 +8,6 @@ export const criarPagamento = async ( req: Request, res: Response, next: NextFun
     res.status(201).json(postPagamento);
     
   } catch (error) {
-    res.status(500).json({ message: 'Erro ao criar pagamento' });
     next(error);
   }
 };
