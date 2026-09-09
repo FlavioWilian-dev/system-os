@@ -35,7 +35,7 @@ export const obterPagamentos = async (dados: { status: string; descricao: string
         SELECT * FROM CADFORMAPAGAMENTO
         WHERE STATUS = $1 AND DESCRICAO ILIKE $2
         `,
-        [dados.status, `%${dados.descricao}%`]
+        ['A', `%${dados.descricao}%`]
     );
     return resultado.rows;
 };
