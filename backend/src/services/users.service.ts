@@ -21,7 +21,7 @@ WHERE nomeUsuario = $1::varchar
       INSERT INTO CADUSUARIO ( nomeUsuario, senha, codigoGrupoPermissao )
         VALUES ( $1, $2, $3 )
     `,
- 
+    [  dados.nomeUsuario,  dados.senha, dados.codigoGrupoPermissao ]
   );
 
     return resultado.rows[0];
