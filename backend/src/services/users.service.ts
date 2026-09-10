@@ -5,9 +5,9 @@ import { Usuario } from '../types/users.type';
 export const criarUsuario = async (dados: Usuario) => {
   const usuarioExistente = await pool.query(
     `   
-SELECT nomeUsuario
-FROM CADUSUARIO
-WHERE nomeUsuario = $1::varchar
+      SELECT nomeUsuario
+      FROM CADUSUARIO
+      WHERE nomeUsuario = $1::varchar
     `,
     [dados.nomeUsuario]
   );

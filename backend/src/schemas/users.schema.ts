@@ -1,7 +1,6 @@
 import { z } from "zod";
-import { Usuario } from "../types/users.type";
 
-export const usuarioSchema = z.object({
+export const criarUsuarioSchema = z.object({
     nomeUsuario: z
     .string()
     .min(3, { message: "O nome de usuário deve ter pelo menos 3 caracteres" }),   
