@@ -6,11 +6,11 @@ export const criarProduto = async (dados: Produto) => {
 
   const produtoExistente = await pool.query(
     `
-    SELECT CODIGOPRODUTO
+    SELECT NOMEPRODUTO
     FROM CADPRODUTO
-    WHERE CODIGOPRODUTO = $1::varchar
+    WHERE NOMEPRODUTO = $1::varchar
     `,
-    [dados.codigoProduto]
+    [dados.nomeProduto]
   );
 
   if (produtoExistente.rows.length > 0) {
@@ -20,9 +20,15 @@ export const criarProduto = async (dados: Produto) => {
   const resultado = await pool.query(
     `
       INSERT INTO CADPRODUTO ( NOMEPRODUTO, PRECO, ESTOQUE, UNIDADE )
+<<<<<<< HEAD
       VALUES ( $1, $2, $3, $4)
     `,
     [ dados.nomeProduto,  dados.preco ?? null, dados.estoque, dados.unidade ]
+=======
+      VALUES ( $1, $2, $3, $4 )
+    `,
+    [  dados.nomeProduto,  dados.preco ?? null, dados.estoque, dados.unidade ]
+>>>>>>> bdd93cf4a5e754d61e385175172772bdc489114b
   );
 
   return resultado.rows[0];

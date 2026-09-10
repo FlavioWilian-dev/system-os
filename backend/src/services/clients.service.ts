@@ -41,3 +41,4 @@ export const obterClientes = async (dados: Cliente) => {
 
   return resultado.rows;
 };
+

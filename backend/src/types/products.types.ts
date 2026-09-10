@@ -1,8 +1,8 @@
 export interface Produto {
-  codigoProduto: string;
+  codigoProduto: number;
   nomeProduto: string;
-  preco?: number;
-  estoque: number; 
+  preco?: string;
+  estoque: string; 
   unidade: string; 
   
 }
