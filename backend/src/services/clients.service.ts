@@ -20,6 +20,7 @@ export const criarCliente = async (dados: Cliente) => {
     `
       INSERT INTO CADCLIENTE ( NOMECLIENTE, CPFCNPJ, FONE, EMAIL, ENDERECO, BAIRRO, NUMERO, CEP, CIDADE, ESTADO )
       VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10 )
+      RETURNING *
     `,
     [ dados.nomeCliente, dados.cpfCnpj, dados.fone ?? null, dados.email ?? null, dados.endereco ?? null, dados.bairro ?? null, dados.numero ?? null, dados.cep ?? null, dados.cidade ?? null, dados.estado ?? null,
     ]
@@ -28,17 +29,15 @@ export const criarCliente = async (dados: Cliente) => {
   return resultado.rows[0];
 };
 
-export const obterClientes = async (dados: Cliente) => {
+export const obterClientes = async (nomeCliente: string) => {
   const resultado = await pool.query(
     `
       SELECT * FROM CADCLIENTE
       WHERE nomeCliente ILIKE $1
     `, [
-      `%${dados.nomeCliente}%`  
+      `%${nomeCliente}%`
     ]
   );
-  console.log('nomeCliente', dados.nomeCliente);
-
   return resultado.rows;
 };
 

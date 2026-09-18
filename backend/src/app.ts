@@ -5,8 +5,8 @@ import { errorMiddleware } from './middlewares/error.middleware';
 import clientsRouter from './routes/clients.router';
 import productsRouter from './routes/products.router';
 import paymentsRouter from './routes/payments.router';
-import moviment from './routes/moviment';
-import movimentitems from './routes/movimentitems';
+import moviment from './routes/moviment.router';
+import movimentitems from './routes/movimentitems.router';
 import movimentInstallments from './routes/movimentInstallmen.router';
 
 const app = express();

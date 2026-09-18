@@ -21,6 +21,7 @@ export const criarProduto = async (dados: Produto) => {
     `
       INSERT INTO CADPRODUTO ( NOMEPRODUTO, PRECO, ESTOQUE, UNIDADE )
       VALUES ( $1, $2, $3, $4 )
+      RETURNING *
     `,
     [  dados.nomeProduto,  dados.preco ?? null, dados.estoque, dados.unidade ]
   );
@@ -28,16 +29,14 @@ export const criarProduto = async (dados: Produto) => {
   return resultado.rows[0];
 };
 
-export const obterProdutos = async (dados: Produto) => {
+export const obterProdutos = async (nomeProduto: string) => {
   const resultado = await pool.query(
     `
       SELECT * FROM CADPRODUTO
       WHERE nomeProduto ILIKE $1
     `, [
-      `%${dados.nomeProduto}%`  
+      `%${nomeProduto}%`
     ]
   );
-  console.log('nomeProduto', dados.nomeProduto);
-
   return resultado.rows;
 };

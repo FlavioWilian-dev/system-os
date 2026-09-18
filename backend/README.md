@@ -92,7 +92,7 @@ Todos os `POST` e `PUT` recebem JSON e devem usar `Content-Type: application/jso
 | Método | Rota | Descrição |
 | --- | --- | --- |
 | `POST` | `/clientes` | Cria um cliente. |
-| `GET` | `/clientes` | Lista clientes filtrando `nomeCliente` recebido no corpo. |
+| `GET` | `/clientes?nomeCliente=ana` | Lista clientes e permite filtrar por nome. |
 
 ```json
 {
@@ -114,7 +114,7 @@ Todos os `POST` e `PUT` recebem JSON e devem usar `Content-Type: application/jso
 | Método | Rota | Descrição |
 | --- | --- | --- |
 | `POST` | `/produtos` | Cria um produto. |
-| `GET` | `/produtos` | Lista produtos filtrando `nomeProduto` recebido no corpo. |
+| `GET` | `/produtos?nomeProduto=filtro` | Lista produtos e permite filtrar por nome. |
 
 ```json
 {
@@ -130,7 +130,7 @@ Todos os `POST` e `PUT` recebem JSON e devem usar `Content-Type: application/jso
 | Método | Rota | Descrição |
 | --- | --- | --- |
 | `POST` | `/pagamentos` | Cadastra uma forma de pagamento. |
-| `GET` | `/pagamentos` | Lista formas de pagamento; o serviço filtra por status `A` e `descricao` do corpo. |
+| `GET` | `/pagamentos?descricao=cartão` | Lista formas de pagamento ativas e permite filtrar por descrição. |
 
 ```json
 {
@@ -228,15 +228,12 @@ Existe um middleware `autenticar`, que exige o cabeçalho `Authorization: Bearer
 ## Estado atual e pontos de atenção
 
 - Os módulos de usuários existem, porém `users.router.ts` não é montado em `app.ts`; não há endpoint de usuários exposto pela aplicação.
-- `app.ts` importa `./routes/moviment` e `./routes/movimentitems`, enquanto os arquivos existentes se chamam `moviment.router.ts` e `movimentitems.router.ts`. Esses imports devem ser corrigidos antes da inicialização normal da aplicação.
-- O `tsconfig.json` usa `moduleResolution: "Node"`, opção removida pela versão instalada do TypeScript. Atualize a configuração para uma estratégia suportada (por exemplo, `node16`) antes de compilar com a versão atual.
 - Os `INSERT` e `UPDATE` não usam `RETURNING`; por isso, as rotas de criação/atualização podem responder sem o registro criado/alterado, embora a operação tenha sido executada no banco.
-- Os `GET` de clientes, produtos e pagamentos leem filtros de `req.body`. Para compatibilidade com clientes HTTP e caches, recomenda-se migrar esses filtros para query string e tratar a ausência do filtro.
 - Não há testes automatizados, endpoint de health check, migrations nem documentação OpenAPI no estado atual.
 
 ## Próximos passos recomendados
 
-1. Corrigir os imports e o `tsconfig`, depois adicionar CI com `npm run build` e testes.
+1. Adicionar CI com `npm run build` e testes.
 2. Criar migrations versionadas e constraints no PostgreSQL para chaves estrangeiras e unicidade.
 3. Padronizar respostas de erro e incluir todos os erros de domínio relevantes como `404` ou `409`.
 4. Implementar autenticação com hash de senha, emissão/verificação de JWT e autorização por grupo de permissão.
@@ -249,4 +246,3 @@ Existe um middleware `autenticar`, que exige o cabeçalho `Authorization: Bearer
 | `npm run dev` | Executa o servidor TypeScript em modo observação. |
 | `npm run build` | Compila `src/` para `dist/`. |
 | `npm start` | Inicia a aplicação compilada em `dist/server.js`. |
-

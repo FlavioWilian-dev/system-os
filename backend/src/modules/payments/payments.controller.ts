@@ -14,7 +14,7 @@ export const criarPagamento = async ( req: Request, res: Response, next: NextFun
 
 export const obterPagamentos = async ( req: Request, res: Response, next: NextFunction ): Promise<void> => {
     try {
-        const getPagamentos = await pagamentosService.obterPagamentos(req.body);
+        const getPagamentos = await pagamentosService.obterPagamentos(String(req.query.descricao ?? ''));
         res.status(200).json(getPagamentos);
     } catch (error) {   
         res.status(500).json({ message: 'Erro ao obter pagamentos' });

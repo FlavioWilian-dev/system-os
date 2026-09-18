@@ -14,7 +14,7 @@ export const criarProduto = async ( req: Request, res: Response, next: NextFunct
 
 export const obterProdutos = async ( req: Request, res: Response, next: NextFunction ): Promise<void> => {
   try {
-    const getProdutos = await produtosService.obterProdutos(req.body);     
+    const getProdutos = await produtosService.obterProdutos(String(req.query.nomeProduto ?? ''));
 
     res.status(200).json({ data: getProdutos });
     } catch (error) {

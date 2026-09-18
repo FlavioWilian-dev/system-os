@@ -14,7 +14,7 @@ export const criarCliente = async ( req: Request, res: Response, next: NextFunct
 
 export const obterClientes = async ( req: Request, res: Response, next: NextFunction ): Promise<void> => {
   try {
-    const getClientes = await clientesService.obterClientes(req.body);  
+    const getClientes = await clientesService.obterClientes(String(req.query.nomeCliente ?? ''));
 
     res.status(200).json({ message: 'Clientes obtidos com sucesso', data: getClientes });
   } catch (error) {
