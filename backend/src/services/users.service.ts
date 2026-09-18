@@ -36,6 +36,5 @@ export const obterUsuarios = async (dados: Usuario) => {
         `%${dados.nomeUsuario}%`  
     ]
   );
-  console.log('nomeUsuario', dados.nomeUsuario);
   return resultado.rows;
 };
