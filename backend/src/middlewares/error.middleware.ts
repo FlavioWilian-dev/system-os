@@ -28,6 +28,18 @@ export const errorMiddleware = ( error: Error, req: Request, res: Response, next
     }); 
     return
   }
+  if (error.message === 'Número da OS já cadastrado') {
+    res.status(409).json({
+      erro: error.message,
+    });
+    return;
+  }
+  if (error.message === 'Cliente não encontrado') {
+    res.status(404).json({
+      erro: error.message,
+    });
+    return;
+  }
 
   res.status(500).json({
     erro: 'Erro interno do servidor',
