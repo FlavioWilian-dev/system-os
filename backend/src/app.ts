@@ -5,6 +5,8 @@ import { errorMiddleware } from './middlewares/error.middleware';
 import clientsRouter from './routes/clients.router';
 import productsRouter from './routes/products.router';
 import paymentsRouter from './routes/payments.router';
+import serviceOrdersRouter from './routes/service-orders.router';
+
 
 const app = express();
 
@@ -13,6 +15,7 @@ app.use(express.json());
 app.use('/api/clientes', clientsRouter);
 app.use('/api/produtos', productsRouter);
 app.use('/api/pagamentos', paymentsRouter);
+app.use('/api/ordens-servico', serviceOrdersRouter);
 app.use(errorMiddleware);
 
 export default app;
