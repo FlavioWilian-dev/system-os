@@ -7,6 +7,7 @@ import productsRouter from './routes/products.router';
 import paymentsRouter from './routes/payments.router';
 import moviment from './routes/moviment';
 import movimentitems from './routes/movimentitems';
+import movimentInstallments from './routes/movimentInstallmen.router';
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use('/api/produtos', productsRouter);
 app.use('/api/pagamentos', paymentsRouter);
 app.use('/api/ordens-servico', moviment);
 app.use('/api/itens-os', movimentitems);
+app.use('/api/parcelas-os', movimentInstallments);
 app.use(errorMiddleware);
 
 export default app;
