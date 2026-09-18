@@ -34,6 +34,12 @@ export const errorMiddleware = ( error: Error, req: Request, res: Response, next
     });
     return;
   }
+  if (error.message === 'OS não encontrada') {
+    res.status(404).json({
+      erro: error.message,
+    });
+    return;
+  }
   if (error.message === 'Cliente não encontrado') {
     res.status(404).json({
       erro: error.message,
