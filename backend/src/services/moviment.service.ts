@@ -119,8 +119,8 @@ export const atualizarMovimentoOS = async ( codigoMovimentoOS: number, dados: Mo
             SET
                 ORDEMMOVIMENTOOS = $1,
                 CODIGOCLIENTE = $2,
-                DATAABERTURA = $3,
-                DATAFECHAMENTO = $4,
+                DATAABERTURA = COALESCE($3, DATAABERTURA),
+                DATAFECHAMENTO = COALESCE($4, DATAFECHAMENTO),
                 STATUS = $5,
                 OBSERVACAO = $6,
                 TOTAL = $7
